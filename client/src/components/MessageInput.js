@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ShowMessage from "./ShowMessage";
+import PaginationButton from "./PaginationButton";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
   const [alert, setAlert] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
+  const pages = Array.from({ length: totalPage }, (_, index) => {
+    return index + 1;
+  });
   const getAllMessage = async () => {
-    const res = await axios.get("http://localhost:5000/api/message");
+    const res = await axios.get(
+      `http://localhost:5000/api/message?page=${currentPage}`
+    );
     setAllMessage(res.data.messages);
+    setTotalPage(res.data.numberOfPages);
   };
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -37,7 +46,7 @@ const MessageInput = () => {
   };
   useEffect(() => {
     getAllMessage();
-  }, [setAllMessage]);
+  }, [setAllMessage, currentPage]);
   return (
     <div>
       {alert ? (
@@ -67,6 +76,17 @@ const MessageInput = () => {
             />
           );
         })}
+      <br />
+      {pages.map((item, index) => {
+        return (
+          <PaginationButton
+            key={index}
+            page={item}
+            currentPage={currentPage}
+            handlePage={setCurrentPage}
+          />
+        );
+      })}
     </div>
   );
 };
