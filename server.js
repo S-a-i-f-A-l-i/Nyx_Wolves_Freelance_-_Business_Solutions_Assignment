@@ -6,10 +6,15 @@ import cors from "cors";
 app.use(cors());
 import mongoose from "mongoose";
 
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
 // routes
 import messageRouter from "./routes/messageRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(express.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
@@ -18,7 +23,9 @@ app.get("/", (req, res) => {
 
 app.use("/api", messageRouter);
 app.use("/api", imageRouter);
-
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 const port = process.env.PORT || 5000;
 const start = async () => {
   try {
