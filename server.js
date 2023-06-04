@@ -2,6 +2,8 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
+app.use(cors());
 import mongoose from "mongoose";
 
 // routes
