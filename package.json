@@ -20,7 +20,7 @@
   "name": "nyx_wolves_freelance_-_business_solutions_assignment",
   "description": "",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/S-a-i-f-A-l-i/Nyx_Wolves_Freelance_-_Business_Solutions_Assignment.git"
