@@ -18,7 +18,7 @@ const ShowMessage = ({ message, id, handleAfterDelete }) => {
       const res = await axios.patch(`http://localhost:5000/api/message/${id}`, {
         message: editMessage,
       });
-      console.log(res);
+      // console.log(res);
       message = res.data.updatedMessage.message;
       setGetMessage(res.data.updatedMessage.message);
       setEditMessage("");

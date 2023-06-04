@@ -77,6 +77,12 @@ const MessageInput = () => {
           );
         })}
       <br />
+      <button
+        disabled={currentPage <= 1}
+        onClick={() => setCurrentPage(currentPage - 1)}
+      >
+        Prev
+      </button>
       {pages.map((item, index) => {
         return (
           <PaginationButton
@@ -87,6 +93,12 @@ const MessageInput = () => {
           />
         );
       })}
+      <button
+        disabled={currentPage >= totalPage}
+        onClick={() => setCurrentPage(currentPage + 1)}
+      >
+        Next
+      </button>
     </div>
   );
 };
