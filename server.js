@@ -30,7 +30,7 @@ app.use("/api", imageRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
-const port = process.env.PORT || 5000;
+const port = 5000;
 const start = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL);
