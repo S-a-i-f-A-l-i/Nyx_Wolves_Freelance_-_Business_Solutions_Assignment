@@ -1,5 +1,7 @@
 import express from "express";
 const app = express();
+import morgan from "morgan";
+app.use(morgan("dev"));
 import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";

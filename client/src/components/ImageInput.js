@@ -26,6 +26,7 @@ const ImageInput = () => {
               .post(`http://localhost:5000/api/images`, { image: uri })
               .then((res) => {
                 // console.log(res);
+                getAllImages();
                 setInputImages({});
                 setLoading(false);
               })
@@ -41,7 +42,10 @@ const ImageInput = () => {
   };
   const getAllImages = async () => {
     const res = await axios.get(`http://localhost:5000/api/images`);
-    setGotImages(res.data.images);
+    console.log("old", JSON.stringify(gotImages), "new", res.data.images);
+    if (JSON.stringify(gotImages) !== JSON.stringify(res.data.images)) {
+      setGotImages(res.data.images);
+    }
   };
   const handleDelete = async (_id, public_id) => {
     try {
