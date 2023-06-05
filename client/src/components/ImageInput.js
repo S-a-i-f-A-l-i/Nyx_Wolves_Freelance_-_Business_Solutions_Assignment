@@ -23,7 +23,10 @@ const ImageInput = () => {
           0,
           (uri) => {
             axios
-              .post(`http://localhost:5000/api/images`, { image: uri })
+              .post(
+                `https://nyx-wolves-freelance-business-solutions.onrender.com/api/images`,
+                { image: uri }
+              )
               .then((res) => {
                 // console.log(res);
                 getAllImages();
@@ -41,7 +44,9 @@ const ImageInput = () => {
     }
   };
   const getAllImages = async () => {
-    const res = await axios.get(`http://localhost:5000/api/images`);
+    const res = await axios.get(
+      `https://nyx-wolves-freelance-business-solutions.onrender.com/api/images`
+    );
     console.log("old", JSON.stringify(gotImages), "new", res.data.images);
     if (JSON.stringify(gotImages) !== JSON.stringify(res.data.images)) {
       setGotImages(res.data.images);
@@ -50,7 +55,7 @@ const ImageInput = () => {
   const handleDelete = async (_id, public_id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/images/${_id}/${public_id}`
+        `https://nyx-wolves-freelance-business-solutions.onrender.com/api/images/${_id}/${public_id}`
       );
       getAllImages();
     } catch (error) {

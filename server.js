@@ -22,6 +22,7 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(express.json({ limit: "10mb" }));
 
 app.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   res.status(202).json({ message: "Server Running Dear!" });
 });
 
