@@ -14,6 +14,8 @@ import path from "path";
 import messageRouter from "./routes/messageRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.use(express.json({ limit: "10mb" }));
 
