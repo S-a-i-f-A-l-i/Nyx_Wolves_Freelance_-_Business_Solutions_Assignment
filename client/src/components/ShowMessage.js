@@ -15,9 +15,12 @@ const ShowMessage = ({ message, id, handleAfterDelete }) => {
       return;
     }
     try {
-      const res = await axios.patch(`http://localhost:5000/api/message/${id}`, {
-        message: editMessage,
-      });
+      const res = await axios.patch(
+        `https://nyx-wolves-freelance-business-solutions.onrender.com/api/message/${id}`,
+        {
+          message: editMessage,
+        }
+      );
       // console.log(res);
       message = res.data.updatedMessage.message;
       setGetMessage(res.data.updatedMessage.message);
@@ -29,7 +32,9 @@ const ShowMessage = ({ message, id, handleAfterDelete }) => {
   };
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`http://localhost:5000/api/message/${id}`);
+      const res = await axios.delete(
+        `https://nyx-wolves-freelance-business-solutions.onrender.com/api/message/${id}`
+      );
       console.log(res);
       handleAfterDelete();
     } catch (error) {

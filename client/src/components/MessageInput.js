@@ -14,7 +14,7 @@ const MessageInput = () => {
   });
   const getAllMessage = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/message?page=${currentPage}`
+      `https://nyx-wolves-freelance-business-solutions.onrender.com/api/message?page=${currentPage}`
     );
     setAllMessage(res.data.messages);
     setTotalPage(res.data.numberOfPages);
@@ -32,9 +32,12 @@ const MessageInput = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/api/message", {
-        message,
-      });
+      const res = await axios.post(
+        "https://nyx-wolves-freelance-business-solutions.onrender.com/api/message",
+        {
+          message,
+        }
+      );
       setMessage("");
       getAllMessage();
     } catch (error) {
